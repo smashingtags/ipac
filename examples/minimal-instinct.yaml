@@ -1,0 +1,27 @@
+# Example: instinct YAML
+
+# Instincts are CI/CD for behavior.
+# When the agent makes a mistake, it writes a YAML rule
+# so the mistake never happens again.
+
+trigger: "agent restarted a service without asking first"
+rule: "never restart any service, gateway, or container without explicit 'proceed' from the human"
+learned: 2026-03-28
+severity: critical
+context: "agent restarted the OpenClaw gateway 20+ times in a loop trying to fix vision, preventing the human from intervening"
+
+---
+
+trigger: "agent proposed manual steps for something it could do autonomously"
+rule: "always attempt autonomous execution first; only suggest manual steps if autonomous execution is genuinely impossible"
+learned: 2026-03-27
+severity: high
+context: "agent kept asking human to run CLI commands instead of using available tools"
+
+---
+
+trigger: "agent made a visual/UI change without seeing the result"
+rule: "never push CSS or visual changes without capturing and reviewing a screenshot of the rendered result"
+learned: 2026-03-28
+severity: high
+context: "agent pushed a dark-mode CSS override to a site that was supposed to be light/corporate"
