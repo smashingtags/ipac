@@ -39,28 +39,46 @@ Instead of Terraform provisioning a server, IPAC provisions an AI agent with a h
 | Service mesh | Agent communication | Multi-agent orchestration |
 | Backup/DR | Knowledge persistence | Git + vectorized embeddings |
 
-## The Implementation (Reference: Imogen)
+## What's OpenClaw and what's IPAC
 
-Michael Ashley built the first IPAC implementation over 8 months (August 2025 – March 2026) without having a name for it:
+**OpenClaw** is a third-party AI gateway runtime (open source, [openclaw.ai](https://openclaw.ai)). It defines the file conventions: SOUL.md, IDENTITY.md, USER.md, MEMORY.md, AGENTS.md, HEARTBEAT.md, TOOLS.md. It provides the memory backend (QMD), channel plugins, cron scheduling, and agent dispatch. Michael Ashley did not build OpenClaw.
 
-1. **SOUL.md** — Core personality, values, communication style
-2. **USER.md** — The human's biography, preferences, patterns
-3. **IDENTITY.md** — The agent's role, title, self-concept
-4. **MEMORY.md** — Curated long-term knowledge (index)
-5. **memory/ref-*.md** — Evergreen topic references (the actual knowledge)
-6. **memory/YYYY-MM-DD.md** — Daily raw logs (short-term memory)
-7. **TOOLS.md** — Full operational manifest (APIs, credentials, procedures)
-8. **AGENTS.md** — Behavioral rules, safety constraints, operating procedures
-9. **HEARTBEAT.md** — Proactive monitoring checklist
-10. **instincts/*.yaml** — Self-written behavioral rules learned from mistakes
-11. **Voice clone** (ElevenLabs) — Audio presence
-12. **Digital avatar** (HeyGen) — Visual presence
-13. **Brand kit** — Visual identity system
-14. **QMD vectors** — 6,800+ embedded chunks for semantic recall
+**IPAC** is the methodology Michael built on top of OpenClaw:
+- The IaC-to-personality analogy and naming
+- The reference implementation (8 months of populating OpenClaw's files with real operational content)
+- The instinct system (mistakes → YAML rules as behavioral CI/CD)
+- The memory architecture (ref-*.md topic files, daily logs, Memory Filename Law)
+- The heartbeat checklist content (the proactive task runner inside HEARTBEAT.md)
+- The multi-agent team design (Shakespeare-themed agents with capability boundaries)
+- Session = Sprint methodology (Scrum applied to agent sessions)
+- Memory canaries (diagnostic primitive for session isolation)
+- Trust encoding (the alignment research underneath personality encoding)
+- Operator Kit (the scaffolding tool)
 
-## The Scaffolder: Operator Kit
+Think of it this way: OpenClaw gives you `SOUL.md`. IPAC tells you what to put in it and why it matters.
 
-[Operator Kit](https://www.npmjs.com/package/@imogenlabs/operator-kit) is the IPAC provisioning tool — it generates the file structure, memory system, instinct framework, cron jobs, and multi-agent config. It is to IPAC what `terraform init` is to IaC.
+## The implementation (Reference: Imogen)
+
+Michael built this over 8 months (August 2025 – March 2026) without having a name for it:
+
+| Component | Source | What Michael built |
+|---|---|---|
+| SOUL.md, IDENTITY.md, USER.md | OpenClaw convention | The actual personality, values, and human context inside them |
+| MEMORY.md, memory/ | OpenClaw convention | The curation methodology, ref-*.md naming law, topic organization |
+| AGENTS.md | OpenClaw convention | The behavioral rules, safety constraints, proceed-gate system |
+| HEARTBEAT.md | OpenClaw convention | The proactive monitoring checklist (inbox, calendar, memory hygiene) |
+| instincts/*.yaml | IPAC original | Self-written behavioral rules from agent mistakes |
+| Memory Filename Law | IPAC original | ref-*.md naming convention, daily log format |
+| Session = Sprint | IPAC original | Scrum methodology applied to AI agent sessions |
+| Memory canaries | IPAC original | Diagnostic primitive for testing session isolation |
+| Voice clone (ElevenLabs) | Third-party tool | Voice training data and configuration |
+| Digital avatar (HeyGen) | Third-party tool | Avatar configuration |
+| Brand kit | IPAC original | Visual identity system for agent presence |
+| QMD vectors | OpenClaw memory backend | 16,000+ embedded chunks of curated content |
+
+## The scaffolder: Operator Kit
+
+[Operator Kit](https://www.npmjs.com/package/@imogenlabs/operator-kit) is the IPAC provisioning tool — it generates the file structure, memory system, instinct framework, cron jobs, and multi-agent config. It is to IPAC what `terraform init` is to IaC. Built by Michael, MIT licensed.
 
 ## Key Principles
 
