@@ -1,6 +1,6 @@
 # IPAC file structure specification
 
-Version: 0.1.0 (draft)
+**Version:** 0.1.0 (draft)
 
 ## Required files
 
@@ -8,14 +8,14 @@ These files form the minimum viable IPAC implementation:
 
 ```
 workspace/
-├── SOUL.md              # Core personality, values, communication style
-├── IDENTITY.md          # Agent role, title, self-concept
-├── USER.md              # Human biography, preferences, patterns
-├── MEMORY.md            # Curated index pointing to topic files
-├── AGENTS.md            # Behavioral rules, safety constraints
+├── SOUL.md           # Core personality, values, communication style
+├── IDENTITY.md       # Agent role, title, self-concept
+├── USER.md           # Human biography, preferences, patterns
+├── MEMORY.md         # Curated index pointing to topic files
+├── AGENTS.md         # Behavioral rules, safety constraints
 └── memory/
-    ├── ref-*.md         # Evergreen topic references
-    └── YYYY-MM-DD.md    # Daily session logs
+    ├── ref-*.md      # Evergreen topic references
+    └── YYYY-MM-DD.md # Daily session logs
 ```
 
 ## Optional files
@@ -24,13 +24,13 @@ These extend the base implementation:
 
 ```
 workspace/
-├── TOOLS.md             # Operational manifest (APIs, credentials, procedures)
-├── HEARTBEAT.md         # Proactive monitoring checklist
-├── BOOTSTRAP.md         # First-run initialization instructions
+├── TOOLS.md          # Operational manifest (APIs, credentials, procedures)
+├── HEARTBEAT.md      # Proactive monitoring checklist
+├── BOOTSTRAP.md      # First-run initialization instructions
 ├── instincts/
-│   └── *.yaml           # Self-written behavioral rules from mistakes
-├── brand-kit/           # Visual identity (logos, colors, fonts)
-└── skills/              # Operational skill definitions
+│   └── *.yaml        # Self-written behavioral rules from mistakes
+├── brand-kit/        # Visual identity (logos, colors, fonts)
+└── skills/           # Operational skill definitions
 ```
 
 ## File format conventions
@@ -55,18 +55,19 @@ The agent's self-concept. Separate from SOUL.md because identity can change (pro
 
 ### USER.md
 
-Everything the agent needs to know about the human. Biography, work history, preferences, communication patterns, family context. This is the human's terraform state.
+Everything the agent needs to know about the human: biography, work history, preferences, communication patterns, family context. This is the human-context equivalent of state in IaC — the data the agent reads to understand who it's working for.
 
 ### MEMORY.md
 
-An index file, not a dump. Points to ref-*.md files by topic. Think of it as a table of contents for the agent's long-term knowledge.
+An index file, not a dump. Points to `ref-*.md` files by topic. Think of it as a table of contents for the agent's long-term knowledge.
 
 ### memory/ref-*.md
 
 Evergreen reference files organized by topic. Examples:
-- ref-infrastructure.md (servers, IPs, containers, DNS)
-- ref-products.md (product status, pricing, repos)
-- ref-sales-and-revenue.md (customers, revenue, metrics)
+
+- `ref-infrastructure.md` (servers, IPs, containers, DNS)
+- `ref-products.md` (product status, pricing, repos)
+- `ref-sales-and-revenue.md` (customers, revenue, metrics)
 
 Naming convention: `ref-<topic>.md`, lowercase, hyphens.
 
@@ -85,7 +86,7 @@ learned: 2026-03-27
 severity: critical
 ```
 
-These are CI/CD for behavior. Every mistake becomes an automated guardrail.
+These are a CI/CD pattern for behavior: every mistake becomes an automated guardrail on the next run.
 
 ### HEARTBEAT.md
 
@@ -93,8 +94,8 @@ A checklist the agent runs proactively on a schedule. Inbox triage, calendar che
 
 ## Vectorization
 
-All .md files should be vectorized for semantic search. The recommended chunk size is 512 tokens with 64-token overlap. The vector index should be rebuilt on a schedule (every 4 hours recommended).
+All `.md` files should be vectorized for semantic search. The recommended chunk size is 512 tokens with 64-token overlap. The vector index should be rebuilt on a schedule (every 4 hours is a reasonable default).
 
 ## Version control
 
-All IPAC files live in a git repository. Personality evolution is tracked the same way code evolution is tracked. Diffs show exactly what changed and when.
+All IPAC files live in a git repository. Context evolution is tracked the same way code evolution is tracked. Diffs show exactly what changed and when.
