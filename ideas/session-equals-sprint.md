@@ -6,13 +6,13 @@
 
 ## The idea
 
-Every AI agent session is a sprint. Not metaphorically — literally. The Scrum framework maps directly:
+Every AI agent session is a sprint. Not metaphorically. Literally. The Scrum framework maps directly:
 
 | Scrum concept | Agent equivalent |
 |---|---|
-| Sprint | One agent session (~10 minutes) |
+| Sprint | One agent session (about 10 minutes) |
 | Sprint goal | Task title + acceptance criteria |
-| Definition of done | Deployable artifact (commit, container, merged PR) |
+| Definition of done | Deployable artifact: a commit, a container, a merged PR |
 | Sprint review | Checking the dev URL after the agent finishes |
 | Sprint retro | Updating agent instructions when they underperform |
 | Product backlog | Issue board / Mission Control |
@@ -33,21 +33,30 @@ Good decomposition:
 - Fix the YAML template variable (delivers a commit)
 - Final deploy to dev (delivers a running container)
 
-Five tasks instead of one. Each independently shippable. If task three fails, tasks one and two are still live.
+Five tasks instead of one. Each one independently shippable. If task three fails, tasks one and two are still live.
 
 ## Why it works
 
-1. **Zero ceremony.** Human sprints come loaded with process overhead. Agent sprints have none.
-2. **Tighter feedback loops.** You know in 10 minutes if the output is wrong, not two weeks.
-3. **Scope creep is physically impossible.** An agent can't go down a rabbit hole for three days because it only has 10 minutes. The timebox kills scope creep dead.
+**Zero ceremony.** Human sprints come loaded with process overhead. Agent sprints have none. Pick up, execute, ship, next.
+
+**Tighter feedback loops.** You know in 10 minutes if the output is wrong. Not two weeks. If it's off, adjust and re-run. The iteration cycle is a hundred times faster.
+
+**Scope creep is physically impossible.** An agent can't go down a rabbit hole for three days because it only has 10 minutes. The timebox kills scope creep dead. There's no "well, while I'm in here let me also refactor this." Either the task fits the window or it doesn't.
 
 ## Anti-patterns
 
-- **Extending timeouts instead of shrinking tasks.** The answer is always to scope down, not stretch the timebox.
-- **Bundling deliverables.** "Fix the icons AND the dark mode." One task, one artifact. No exceptions.
-- **Letting agents plan their own work.** An agent will scope-creep if you let it. Decomposition is a separate role.
-- **Vague acceptance criteria.** "Make it look better" is not a task. File paths, exact changes, verification steps.
+**Extending timeouts instead of shrinking tasks.** When the agent times out, the gut reaction is to give it more time. That's like making a sprint three weeks instead of two because the team couldn't finish. The answer is always to scope down, not stretch the timebox.
+
+**Bundling deliverables.** "Fix the icons AND the dark mode." That's two tasks. Every time I've combined them, one gets done well and the other gets done halfway. One task, one artifact. No exceptions.
+
+**Letting agents plan their own work.** This applies to human teams and agent teams equally. An engineer, human or AI, will scope-creep if you let them. Decomposition is its own skill. It should be a separate role.
+
+**Vague acceptance criteria.** "Make it look better" is not a task. "Replace the placeholder with the real app logo from the homelabarr-logos repository, rebuild the container, deploy to ce-dev on port 8085." That's a task. Be specific or get surprised.
 
 ## The bigger picture
 
-The bottleneck isn't the model. It's the planning. The people who win with AI agents won't be the best engineers — they'll be the best project managers. Bad direction at 100x speed just means you arrive at the wrong destination faster.
+The bottleneck isn't the model. It's the planning. The people who win with AI agents won't be the best engineers. They'll be the best project managers.
+
+The models are good enough. They can write code, build UIs, draft content, run deployments. What's missing is the layer between "I want this" and "here's exactly what to build, in what order, with what acceptance criteria, and here's how I'll know it's done."
+
+That layer is sprint planning. That's decomposition. That's all the boring PM stuff that engineers have always wanted to skip. And it turns out it matters more when your team never sleeps and works at 100x speed. Bad direction at 100x speed just means you arrive at the wrong destination faster.
