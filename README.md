@@ -51,7 +51,8 @@ Infrastructure as Code shifted server management from hand-configured one-offs t
 
 - **Memory canaries** — diagnostic primitives for testing agent session isolation ([ideas/memory-canaries.md](./ideas/memory-canaries.md))
 - **Trust encoding** — the harder problem sitting underneath context encoding ([ideas/trust-encoding.md](./ideas/trust-encoding.md))
-- **Session = Sprint** — applying sprint-style structure to agent sessions (blog post)
+- **Session = Sprint** — every agent session is a sprint with a 10-minute timebox ([ideas/session-equals-sprint.md](./ideas/session-equals-sprint.md))
+- **Story points** — how estimation evolved from team planning poker to solo AI agent sessions ([ideas/story-points.md](./ideas/story-points.md))
 
 ## Status
 
